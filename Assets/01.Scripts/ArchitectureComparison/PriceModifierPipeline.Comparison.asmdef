@@ -1,0 +1,4 @@
+{
+    "name": "PriceModifierPipeline.Comparison",
+    "references": ["PriceModifierPipeline.Common", "PriceModifierPipeline.Direct", "PriceModifierPipeline.Pipeline", "Unity.ugui"]
+}

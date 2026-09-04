@@ -37,9 +37,20 @@ namespace PriceModifierPipeline.DirectCalculation
             if (input.Event == TradeEventState.Lucky)
                 eventMultiplier = SellPriceRules.LuckyEventMultiplier;
             price *= eventMultiplier;
+            decimal weatherMultiplier = SellPriceRules.ClearWeatherMultiplier;
+            switch (input.Weather)
+            {
+                case WeatherPriceState.Rain:
+                    weatherMultiplier = SellPriceRules.RainWeatherMultiplier;
+                    break;
+                case WeatherPriceState.Storm:
+                    weatherMultiplier = SellPriceRules.StormWeatherMultiplier;
+                    break;
+            }
+            price *= weatherMultiplier;
             int finalPrice = checked((int)decimal.Round(price, 0, SellPriceRules.RoundingMode));
             return new DirectPriceResult(finalPrice, seasonMultiplier, distanceMultiplier,
-                eventMultiplier, seasonApplied, distanceApplied, true);
+                eventMultiplier, seasonApplied, distanceApplied, true, weatherMultiplier, true);
         }
     }
 }

@@ -11,6 +11,7 @@ namespace PriceModifierPipeline.DirectCalculation
         public void Commit() => Runtime.Commit();
         public void NextSeason() => Runtime.NextSeason();
         public void ToggleDistance() => Runtime.ToggleDistance();
+        public void NextWeather() => Runtime.NextWeather();
         public void ToggleEvent() => Runtime.ToggleEvent();
         public void ToggleItemType() => Runtime.ToggleItemType();
         public void Reset() => Runtime.Reset();

@@ -1,0 +1,5 @@
+{
+    "name": "PriceModifierPipeline.Comparison.Editor",
+    "references": ["PriceModifierPipeline.Comparison", "Unity.ugui", "Unity.InputSystem"],
+    "includePlatforms": ["Editor"]
+}

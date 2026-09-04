@@ -41,15 +41,18 @@ namespace PriceModifierPipeline.ModifierPipeline
         }
 
         public void NextSeason() => ChangeInput(new SellPriceInput(Input.BasePrice, Input.ItemType,
-            (SeasonPriceState)(((int)Input.Season + 1) % 3), Input.Distance, Input.Event), "Next Season");
+            (SeasonPriceState)(((int)Input.Season + 1) % 3), Input.Distance, Input.Event, Input.Weather), "Next Season");
         public void ToggleDistance() => ChangeInput(new SellPriceInput(Input.BasePrice, Input.ItemType,
             Input.Season, Input.Distance == DistancePriceState.Short ? DistancePriceState.Long : DistancePriceState.Short,
-            Input.Event), "Toggle Distance");
+            Input.Event, Input.Weather), "Toggle Distance");
         public void ToggleEvent() => ChangeInput(new SellPriceInput(Input.BasePrice, Input.ItemType,
-            Input.Season, Input.Distance, Input.Event == TradeEventState.None ? TradeEventState.Lucky : TradeEventState.None), "Toggle Event");
+            Input.Season, Input.Distance, Input.Event == TradeEventState.None ? TradeEventState.Lucky : TradeEventState.None, Input.Weather), "Toggle Event");
         public void ToggleItemType() => ChangeInput(new SellPriceInput(Input.BasePrice,
             Input.ItemType == TradeItemType.Normal ? TradeItemType.LocalSpecialty : TradeItemType.Normal,
-            Input.Season, Input.Distance, Input.Event), "Toggle Item Type");
+            Input.Season, Input.Distance, Input.Event, Input.Weather), "Toggle Item Type");
+        public void NextWeather() => ChangeInput(new SellPriceInput(Input.BasePrice, Input.ItemType,
+            Input.Season, Input.Distance, Input.Event,
+            (WeatherPriceState)(((int)Input.Weather + 1) % 3)), "Next Weather");
         public void Reset() => ChangeInput(new SellPriceInput(SellPriceRules.DefaultBasePrice,
             TradeItemType.Normal, SeasonPriceState.Normal, DistancePriceState.Short, TradeEventState.None), "Reset");
     }

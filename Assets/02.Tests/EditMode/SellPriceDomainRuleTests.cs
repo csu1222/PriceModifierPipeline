@@ -31,7 +31,7 @@ namespace PriceModifierPipeline.Tests
             var applied = new List<string>();
             var input = new SellPriceInput(100, TradeItemType.LocalSpecialty, season, DistancePriceState.Long, tradeEvent);
             Assert.That(CalculateReference(input, applied), Is.EqualTo(expected));
-            Assert.That(applied, Is.EqualTo(new[] { "Event" }));
+            Assert.That(applied, Is.EqualTo(new[] { "Event", "Weather" }));
         }
 
         [Test]
@@ -137,6 +137,14 @@ namespace PriceModifierPipeline.Tests
             {
                 case TradeEventState.None: rawPrice *= SellPriceRules.NoEventMultiplier; break;
                 case TradeEventState.Lucky: rawPrice *= SellPriceRules.LuckyEventMultiplier; break;
+                default: throw new ArgumentOutOfRangeException(nameof(input));
+            }
+            applied?.Add("Weather");
+            switch (input.Weather)
+            {
+                case WeatherPriceState.Clear: rawPrice *= SellPriceRules.ClearWeatherMultiplier; break;
+                case WeatherPriceState.Rain: rawPrice *= SellPriceRules.RainWeatherMultiplier; break;
+                case WeatherPriceState.Storm: rawPrice *= SellPriceRules.StormWeatherMultiplier; break;
                 default: throw new ArgumentOutOfRangeException(nameof(input));
             }
             return checked((int)Math.Round(rawPrice, 0, SellPriceRules.RoundingMode));

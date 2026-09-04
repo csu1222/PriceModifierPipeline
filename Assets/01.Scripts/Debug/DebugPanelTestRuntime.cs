@@ -10,6 +10,7 @@ namespace PriceModifierPipeline.Debugging
         private DistancePriceState distance = DistancePriceState.Long;
         private TradeEventState tradeEvent = TradeEventState.Lucky;
         private TradeItemType itemType;
+        private WeatherPriceState weather;
         private bool hasPreview = true;
         private bool hasCommit = true;
         private int preview = 234;
@@ -20,7 +21,7 @@ namespace PriceModifierPipeline.Debugging
         {
             bool normal = itemType == TradeItemType.Normal;
             return new PriceDebugSnapshot("UI Test Fixture (no calculation)",
-                new SellPriceInput(100, itemType, season, distance, tradeEvent),
+                new SellPriceInput(100, itemType, season, distance, tradeEvent, weather),
                 season == SeasonPriceState.Favored ? 1.2m : season == SeasonPriceState.Unfavored ? 0.8m : 1m,
                 distance == DistancePriceState.Long ? 1.3m : 1m,
                 tradeEvent == TradeEventState.Lucky ? 1.5m : 1m,
@@ -66,8 +67,15 @@ namespace PriceModifierPipeline.Debugging
             ClearResults("Toggle Item Type");
         }
 
+        public void NextWeather()
+        {
+            weather = (WeatherPriceState)(((int)weather + 1) % 3);
+            ClearResults("Next Weather fixture (no weather calculation)");
+        }
+
         public void Reset()
         {
+            weather = WeatherPriceState.Clear;
             season = SeasonPriceState.Favored;
             distance = DistancePriceState.Long;
             tradeEvent = TradeEventState.Lucky;

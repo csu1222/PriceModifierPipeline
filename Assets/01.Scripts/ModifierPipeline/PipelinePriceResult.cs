@@ -7,6 +7,8 @@ namespace PriceModifierPipeline.ModifierPipeline
         public decimal SeasonMultiplier => Modifiers.SeasonMultiplier;
         public decimal DistanceMultiplier => Modifiers.DistanceMultiplier;
         public decimal EventMultiplier => Modifiers.EventMultiplier;
+        public decimal WeatherMultiplier => Modifiers.WeatherMultiplier;
+        public bool WeatherApplied => Modifiers.WeatherApplied;
         public bool SeasonApplied => Modifiers.SeasonApplied;
         public bool DistanceApplied => Modifiers.DistanceApplied;
         public bool EventApplied => Modifiers.EventApplied;

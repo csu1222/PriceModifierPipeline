@@ -14,7 +14,8 @@ namespace PriceModifierPipeline.ModifierPipeline
                 result.SeasonMultiplier, result.DistanceMultiplier, result.EventMultiplier,
                 result.SeasonApplied, result.DistanceApplied, result.EventApplied,
                 runtime.PreviewResult.FinalPrice, runtime.CommitResult.FinalPrice,
-                runtime.HasPreview, runtime.HasCommit, runtime.LastAction);
+                runtime.HasPreview, runtime.HasCommit, runtime.LastAction,
+                result.WeatherMultiplier, result.WeatherApplied);
         }
     }
 }

@@ -10,6 +10,7 @@ namespace PriceModifierPipeline.ModifierPipeline
             if (modifiers.SeasonApplied) price *= modifiers.SeasonMultiplier;
             if (modifiers.DistanceApplied) price *= modifiers.DistanceMultiplier;
             if (modifiers.EventApplied) price *= modifiers.EventMultiplier;
+            if (modifiers.WeatherApplied) price *= modifiers.WeatherMultiplier;
             return checked((int)decimal.Round(price, 0, SellPriceRules.RoundingMode));
         }
     }

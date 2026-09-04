@@ -23,6 +23,7 @@ namespace PriceModifierPipeline.Debugging
         [SerializeField] private Button eventButton;
         [SerializeField] private Button itemButton;
         [SerializeField] private Button resetButton;
+        [SerializeField] private Button weatherButton;
         private IPriceArchitectureDebugSource source;
         private IPriceArchitectureDebugCommand command;
 
@@ -45,6 +46,7 @@ namespace PriceModifierPipeline.Debugging
             eventButton.onClick.AddListener(OnEvent);
             itemButton.onClick.AddListener(OnItem);
             resetButton.onClick.AddListener(OnReset);
+            if (weatherButton) weatherButton.onClick.AddListener(OnWeather);
             Refresh();
         }
 
@@ -57,6 +59,7 @@ namespace PriceModifierPipeline.Debugging
             if (eventButton) eventButton.onClick.RemoveListener(OnEvent);
             if (itemButton) itemButton.onClick.RemoveListener(OnItem);
             if (resetButton) resetButton.onClick.RemoveListener(OnReset);
+            if (weatherButton) weatherButton.onClick.RemoveListener(OnWeather);
             SetInteractable(false);
         }
 
@@ -75,8 +78,8 @@ namespace PriceModifierPipeline.Debugging
                 return;
             }
             architectureText.text = snapshot.ArchitectureName;
-            inputText.text = $"Base Price   {snapshot.BasePrice}\nItem Type   {snapshot.ItemType}\nSeason   {snapshot.Season}\nDistance   {snapshot.Distance}\nEvent   {snapshot.Event}";
-            modifiersText.text = $"Season   {Modifier(snapshot.SeasonApplied, snapshot.SeasonMultiplier)}\nDistance   {Modifier(snapshot.DistanceApplied, snapshot.DistanceMultiplier)}\nEvent   {Modifier(snapshot.EventApplied, snapshot.EventMultiplier)}";
+            inputText.text = $"Base Price   {snapshot.BasePrice}\nItem Type   {snapshot.ItemType}\nSeason   {snapshot.Season}\nDistance   {snapshot.Distance}\nEvent   {snapshot.Event}\nWeather   {snapshot.Weather}";
+            modifiersText.text = $"Season   {Modifier(snapshot.SeasonApplied, snapshot.SeasonMultiplier)}\nDistance   {Modifier(snapshot.DistanceApplied, snapshot.DistanceMultiplier)}\nEvent   {Modifier(snapshot.EventApplied, snapshot.EventMultiplier)}\nWeather   {Modifier(snapshot.WeatherApplied, snapshot.WeatherMultiplier)}";
             string consistency = snapshot.ConsistencyState == PriceConsistencyState.NotEvaluated ? "N/A"
                 : snapshot.ConsistencyState == PriceConsistencyState.Pass ? "PASS" : "FAIL";
             resultsText.text = $"Preview Price   {(snapshot.HasPreview ? snapshot.PreviewPrice.ToString(CultureInfo.InvariantCulture) : "—")}\nCommit Price   {(snapshot.HasCommit ? snapshot.CommitPrice.ToString(CultureInfo.InvariantCulture) : "—")}\nConsistency   {consistency}";
@@ -107,7 +110,7 @@ namespace PriceModifierPipeline.Debugging
 
         private void SetInteractable(bool value)
         {
-            foreach (var button in new[] { previewButton, commitButton, seasonButton, distanceButton, eventButton, itemButton, resetButton })
+            foreach (var button in new[] { previewButton, commitButton, seasonButton, distanceButton, eventButton, itemButton, resetButton, weatherButton })
                 if (button) button.interactable = value;
         }
 
@@ -115,6 +118,7 @@ namespace PriceModifierPipeline.Debugging
         private void OnCommit() => Execute(command.Commit);
         private void OnSeason() => Execute(command.NextSeason);
         private void OnDistance() => Execute(command.ToggleDistance);
+        private void OnWeather() => Execute(command.NextWeather);
         private void OnEvent() => Execute(command.ToggleEvent);
         private void OnItem() => Execute(command.ToggleItemType);
         private void OnReset() => Execute(command.Reset);

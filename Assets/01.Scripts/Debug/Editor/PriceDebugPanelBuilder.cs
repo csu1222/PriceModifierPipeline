@@ -97,8 +97,8 @@ namespace PriceModifierPipeline.Debugging.Editor
                 Assign(serialized, "inputText", input);
                 Assign(serialized, "modifiersText", modifiers);
                 Assign(serialized, "resultsText", results);
-                string[] fields = { "previewButton", "commitButton", "seasonButton", "distanceButton", "eventButton", "itemButton", "resetButton" };
-                string[] titles = { "Preview", "Commit", "Next Season", "Toggle Distance", "Toggle Event", "Toggle Item Type", "Reset" };
+                string[] fields = { "previewButton", "commitButton", "seasonButton", "distanceButton", "eventButton", "itemButton", "resetButton", "weatherButton" };
+                string[] titles = { "Preview", "Commit", "Next Season", "Toggle Distance", "Toggle Event", "Toggle Item Type", "Reset", "Next Weather" };
                 for (int i = 0; i < fields.Length; i++)
                 {
                     int row = i < 4 ? 0 : 1;

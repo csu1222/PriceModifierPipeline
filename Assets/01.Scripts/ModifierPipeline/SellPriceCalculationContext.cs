@@ -9,6 +9,7 @@ namespace PriceModifierPipeline.ModifierPipeline
         public SeasonPriceState Season { get; }
         public DistancePriceState Distance { get; }
         public TradeEventState Event { get; }
+        public WeatherPriceState Weather { get; }
 
         public SellPriceCalculationContext(SellPriceInput input)
         {
@@ -17,6 +18,7 @@ namespace PriceModifierPipeline.ModifierPipeline
             Season = input.Season;
             Distance = input.Distance;
             Event = input.Event;
+            Weather = input.Weather;
         }
     }
 }

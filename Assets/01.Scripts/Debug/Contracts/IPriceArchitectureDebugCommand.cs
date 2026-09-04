@@ -7,6 +7,7 @@ namespace PriceModifierPipeline.Debugging
         void NextSeason();
         void ToggleDistance();
         void ToggleEvent();
+        void NextWeather();
         void ToggleItemType();
         void Reset();
     }
