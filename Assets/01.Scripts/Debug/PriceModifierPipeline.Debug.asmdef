@@ -1,0 +1,4 @@
+{
+    "name": "PriceModifierPipeline.Debug",
+    "references": ["PriceModifierPipeline.Common", "PriceModifierPipeline.Debug.Contracts", "Unity.ugui"]
+}

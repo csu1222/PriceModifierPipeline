@@ -1,0 +1,6 @@
+{
+    "name": "PriceModifierPipeline.Debug.Tests",
+    "references": ["PriceModifierPipeline.Common", "PriceModifierPipeline.Debug.Contracts", "PriceModifierPipeline.Debug", "Unity.ugui"],
+    "includePlatforms": ["Editor"],
+    "optionalUnityReferences": ["TestAssemblies"]
+}
