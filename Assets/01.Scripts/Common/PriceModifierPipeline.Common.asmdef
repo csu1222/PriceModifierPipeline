@@ -1,0 +1,5 @@
+{
+    "name": "PriceModifierPipeline.Common",
+    "rootNamespace": "PriceModifierPipeline.Common",
+    "noEngineReferences": true
+}

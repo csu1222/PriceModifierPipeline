@@ -1,0 +1,13 @@
+{
+    "name": "PriceModifierPipeline.EditMode.Tests",
+    "rootNamespace": "PriceModifierPipeline.Tests",
+    "references": [
+        "PriceModifierPipeline.Common"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ]
+}
