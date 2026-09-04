@@ -1,0 +1,12 @@
+{
+    "name": "PriceModifierPipeline.Pipeline.Editor",
+    "references": [
+        "PriceModifierPipeline.Pipeline",
+        "PriceModifierPipeline.Debug",
+        "Unity.ugui",
+        "Unity.InputSystem"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ]
+}

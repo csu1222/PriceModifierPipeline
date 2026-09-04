@@ -1,0 +1,7 @@
+{
+    "name": "PriceModifierPipeline.Direct",
+    "references": [
+        "PriceModifierPipeline.Common",
+        "PriceModifierPipeline.Debug.Contracts"
+    ]
+}
